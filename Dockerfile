@@ -1,12 +1,10 @@
-FROM grafana/grafana:12.0.1
+FROM grafana/grafana:10.3.3
 
-# Install jq
 USER root
-RUN apt-get update && \
-    apt-get install -y jq && \
-    rm -rf /var/lib/apt/lists/*
 
-# Add entrypoint
+# Use Alpine's package manager
+RUN apk add --no-cache jq
+
 COPY grafana-entrypoint.sh /grafana-entrypoint.sh
 RUN chmod +x /grafana-entrypoint.sh
 
