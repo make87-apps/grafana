@@ -11,6 +11,7 @@ interfaces:
       name: grafana
       protocol: HTTP
       target_port: 3000
+      is_dev_interface: true
     clients:
       - name: loki
         spec:
