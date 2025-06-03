@@ -9,7 +9,7 @@ interfaces:
     protocol: http
     default_port:
       name: grafana
-      protocol: http
+      protocol: HTTP
       target_port: 3000
     clients:
       - name: loki
