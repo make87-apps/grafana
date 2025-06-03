@@ -51,11 +51,17 @@ EOF
 done
 
 mkdir -p /etc/grafana
-echo "[security]" > /etc/grafana/grafana.ini
-echo "allow_embedding = true" >> /etc/grafana/grafana.ini
-echo "[auth.anonymous]" >> /etc/grafana/grafana.ini
-echo "enabled = true" >> /etc/grafana/grafana.ini
-echo "org_role = Viewer" >> /etc/grafana/grafana.ini
+cat <<EOF > /etc/grafana/grafana.ini
+[security]
+allow_embedding = true
+
+[auth]
+cookie_samesite = none
+
+[auth.anonymous]
+enabled = true
+org_role = Viewer
+EOF
 
 exec grafana-server \
   --homepath=/usr/share/grafana \
