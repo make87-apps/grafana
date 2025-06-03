@@ -7,7 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Add entrypoint
-COPY ../grafana/grafana-entrypoint.sh /grafana-entrypoint.sh
+COPY grafana-entrypoint.sh /grafana-entrypoint.sh
 RUN chmod +x /grafana-entrypoint.sh
 
 ENTRYPOINT ["/grafana-entrypoint.sh"]
