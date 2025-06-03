@@ -35,7 +35,6 @@ echo "$MAKE87_CONFIG" | jq -c '.interfaces | to_entries[]' | while read -r iface
     fi
 
     url="http://$host:$port"
-
     datasource_type=$(echo "$client" | jq -r '.spec // "loki"')
     name="${iface_name}_${client_name}"
 
@@ -50,6 +49,13 @@ EOF
 
   done
 done
+
+# Optional: write grafana.ini if allow_embedding is needed
+if [ "${GF_SECURITY_ALLOW_EMBEDDING:-false}" = "true" ]; then
+  mkdir -p /etc/grafana
+  echo "[security]" > /etc/grafana/grafana.ini
+  echo "allow_embedding = true" >> /etc/grafana/grafana.ini
+fi
 
 exec grafana-server \
   --homepath=/usr/share/grafana \
