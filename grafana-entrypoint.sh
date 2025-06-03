@@ -53,6 +53,9 @@ done
 mkdir -p /etc/grafana
 echo "[security]" > /etc/grafana/grafana.ini
 echo "allow_embedding = true" >> /etc/grafana/grafana.ini
+echo "[auth.anonymous]" >> /etc/grafana/grafana.ini
+echo "enabled = true" >> /etc/grafana/grafana.ini
+echo "org_role = Viewer" >> /etc/grafana/grafana.ini
 
 exec grafana-server \
   --homepath=/usr/share/grafana \
